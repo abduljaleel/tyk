@@ -71,6 +71,7 @@ func (k *OrganizationMonitor) ProcessRequestLive(r *http.Request) (error, int) {
 		session.Per > 0 && session.Rate > 0,
 		true,
 		&k.Spec.GlobalConfig,
+		k.Spec.APIID,
 	)
 
 	k.Spec.OrgSessionManager.UpdateSession(k.Spec.OrgID, &session, session.Lifetime(k.Spec.SessionLifetime), false)
@@ -196,6 +197,7 @@ func (k *OrganizationMonitor) AllowAccessNext(
 		session.Per > 0 && session.Rate > 0,
 		true,
 		&k.Spec.GlobalConfig,
+		k.Spec.APIID,
 	)
 
 	k.Spec.OrgSessionManager.UpdateSession(k.Spec.OrgID, &session, session.Lifetime(k.Spec.SessionLifetime), false)
